@@ -23,4 +23,8 @@ class TicketController extends Controller
      {
          return $this->ticket->findTicket($ticket);
      }
+     public function store()
+     {
+         
+     }
 }

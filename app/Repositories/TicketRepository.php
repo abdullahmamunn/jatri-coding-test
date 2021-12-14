@@ -11,8 +11,8 @@ class TicketRepository
                        ->map(function($tickets){
                            return[
                                'serial' => $tickets->serial,
-                               'from_station' => $tickets->from_counter,
-                               'to_station' => $tickets->to_counter,
+                               'from_counter' => $tickets->from_counter,
+                               'to_counter' => $tickets->to_counter,
                                'amount' => $tickets->amount,
                                'created_at' => $tickets->created_at,
                            ];
@@ -21,7 +21,9 @@ class TicketRepository
 
     public function findTicket($ticket)
     {
-        return $tickets = Ticket::findOrfail($ticket);
+         $tickets = Ticket::findOrFail($ticket);
+         
+         return $tickets;
     }
 }
 
