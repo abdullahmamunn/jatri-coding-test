@@ -2,15 +2,13 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ToArray;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class Dataset 
+class Dataset implements ToArray, WithHeadingRow
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    public function array(array $array)
     {
-        //
+       return $array;
     }
 }

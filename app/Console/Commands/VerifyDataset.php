@@ -2,10 +2,16 @@
 
 namespace App\Console\Commands;
 
+use App\Exports\Dataset;
 use Illuminate\Console\Command;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VerifyDataset extends Command
 {
+//    Division index based on Excel file
+    private static $SHEETS = ['Dhaka', 'Chattogram', 'Rajshahi', 'TestDataSets'];
+
+    protected $dataset;
     /**
      * The name and signature of the console command.
      *
@@ -29,17 +35,51 @@ class VerifyDataset extends Command
     {
         parent::__construct();
 
-        Excel::import(new Dataset(), storage_path('sample.xlsx'));
-        
+        $this->dataset = Excel::toArray(new Dataset(), storage_path('sample.xlsx'));
+        //dd($this->dataset);
     }
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
     public function handle()
     {
-        return Command::SUCCESS;
+        
+        foreach ($this->dataset[$this->findSheetKey('TestDataSets')] as $testRow)
+        {
+            $this->line('SL:'. $testRow['sl'] . ' | lat: ' . $testRow['lat'] . '| lng: ' . $testRow['lng'] . '| Division: ' . $testRow['division']);
+            $matched = $this->checkIsMatched($testRow);
+            if ($matched) {
+                $this->info('Matched!');
+            } else {
+                $this->warn('Not Matched!');
+            }
+            $this->newLine();
+        }
+    }
+
+    /**
+     * @param $testRow
+     * @return string
+     */
+    private function checkIsMatched($testRow): string
+    {
+        $division = $this->dataset[$this->findSheetKey($testRow['division'])];
+        foreach ($division as $location) {
+            if ($location['lat'] == $testRow['lat'] && $location['lng'] == $testRow['lng']) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $needle
+     * @return false|int|string
+     */
+    private function findSheetKey($needle)
+    {
+        return array_search($needle, VerifyDataset::$SHEETS);
     }
 }

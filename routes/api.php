@@ -21,12 +21,12 @@ use App\Http\Controllers\AuthController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/users', [AuthController::class, 'getUsers']);
+Route::get('/tickets', [TicketController::class, 'index']);
 
 //protected routes
 Route::group(['middleware' => ['auth:sanctum']], function(){
-    //Route::get('/tickets',[TicketController::class,'index']);
+
     Route::post('tickets',[TicketController::class,'store']);
-    //Route::post('/tickets/{ticket}',[TicketController::class,'show']);
     Route::post('/logout', [AuthController::class, 'logout']);
 
 });
