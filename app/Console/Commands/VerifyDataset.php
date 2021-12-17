@@ -28,6 +28,9 @@ class VerifyDataset extends Command
     public function __construct()
     {
         parent::__construct();
+
+        Excel::import(new Dataset(), storage_path('sample.xlsx'));
+        
     }
 
     /**
