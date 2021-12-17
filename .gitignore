@@ -1,15 +1,15 @@
-/node_modules
-/public/hot
-/public/storage
-/storage/*.key
-/vendor
-.env
-.env.backup
-.phpunit.result.cache
+/task - 3/node_modules
+/task - 3/public/hot
+/task - 3/public/storage
+/task - 3/storage/*.key
+/task - 3/vendor
+/task -3/.env
+/task -3/.env.backup
+/task -3/.phpunit.result.cache
 docker-compose.override.yml
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/.idea
-/.vscode
+/task -3/.idea
+/task -3/.vscode
