@@ -8,19 +8,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Ticket;
+use Exception;
 
 class SyncTickets implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected $tickets;
+
+    public function __construct($tickets)
     {
-        //
+        $this->tickets = $tickets;
     }
 
     /**
@@ -30,6 +29,12 @@ class SyncTickets implements ShouldQueue
      */
     public function handle()
     {
-        //
+        
+        Ticket::insert($this->tickets);
+
+    }
+    public function failed(Exception $exception)
+    {
+        logger($exception->getMessage());
     }
 }
