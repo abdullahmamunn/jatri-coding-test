@@ -159,11 +159,14 @@ Yes!
 
 
 ## Task -3 
-Firstly, Clone the project and goto task 2 amd 3 after that run command: <b> composer install </b> and <br>
+Firstly, Clone the project and goto task 2 and 3 after that run command: <b> composer install </b> and <br>
 for Application key generate: <b>php artisan key:generate</b> and <br> Migrate database: <b>php artisan:migrate</b> <br>
-Now test API using Postman
-For User registration: Method(post) http://localhost:8000/api/register
-    User Login: Method(post) http://localhost:8000/api/login
+Now test API using Postman <br>
+For User registration: Method(post) http://localhost:8000/api/register <br>
+    User Login: Method(post) http://localhost:8000/api/login <br>
+    User sync collections of data through this API http://localhost:8000/api/tickets. and sync features should be async (Background Jobs).<br>
+    User Logout http://localhost:8000/api/logout
+    
     
     
 
