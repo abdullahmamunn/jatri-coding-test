@@ -1,0 +1,3 @@
+Database Architecture Design and developing back-end according to requirements and also 
+analyzing and modifying exsiting system like integrate new design and back-end features.
+

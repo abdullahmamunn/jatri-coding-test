@@ -50,9 +50,9 @@ class VerifyDataset extends Command
             $this->line('SL:'. $testRow['sl'] . ' | lat: ' . $testRow['lat'] . '| lng: ' . $testRow['lng'] . '| Division: ' . $testRow['division']);
             $matched = $this->checkIsMatched($testRow);
             if ($matched) {
-                $this->info('Matched!');
+                $this->info('Yes!');
             } else {
-                $this->warn('Not Matched!');
+                $this->warn('No!');
             }
             $this->newLine();
         }
